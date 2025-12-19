@@ -1,26 +1,15 @@
-// Fetching
-import { useQuery } from "@tanstack/react-query";
-
-// API Url's
-import { backend } from "../axios";
+// Hooks
+import { useState } from "react";
+import { useRecommendations } from "../hooks/useRecommendations";
 
 export default function Home() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["api"],
-    queryFn: async () => {
-      const res = await backend.get('/');
-      return res.data;
-    }
-  });
-
-  console.log(data);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  const [interests, setInterests] = useState('');
+  const recommendations = useRecommendations();
 
   return (
-    <>
-      {data}
-    </>
+    <div className="flex flex-col">
+      <textarea className="border w-sm h-25" value={interests} onChange={e => setInterests(e.target.value)}></textarea>
+      <button onClick={() => recommendations.mutate(interests)}>Recommend</button>
+    </div>
   );
 }
