@@ -3,15 +3,18 @@ import { Module } from '@nestjs/common';
 
 // Modules
 import { ConfigModule } from '@nestjs/config';
-import { RecommendModule } from './recommend/recommend.module';
+import { RecommendationModule } from './recommendation/recommendation.module';
 
+// Controllers
 import { AppController } from './app.controller';
+
+// Providers
 import { AppService } from './app.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    RecommendModule
+    RecommendationModule
   ],
   controllers: [AppController],
   providers: [AppService],
