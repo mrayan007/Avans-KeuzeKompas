@@ -9,6 +9,5 @@ export const useRecommendations = () => {
     mutationFn: fetchRecommendations,
     onMutate: () => console.log('loading'),
     onError: async () => console.log('error'),
-    onSuccess: async (data) => console.log(data)
   });
 }

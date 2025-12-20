@@ -1,14 +1,20 @@
+// CSS
+import './App.css';
+
 // For Fetching & Queries
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
-// Pages
-import Home from "./pages/home";
+// Components
+import Layout from "./layout";
+import Window from "./components/window";
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Home />
+      <Layout>
+        <Window />
+      </Layout>
     </QueryClientProvider>
   );
 }
