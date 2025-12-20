@@ -12,12 +12,12 @@ export default function Recommend({ title }: { title: (text: string) => void }) 
   const [interesses, setInteresses] = useState('');
 
   return (
-    <>
-      <textarea value={interesses} onChange={e => setInteresses(e.target.value)} placeholder={textareaPlaceholder} className="resize bordered h-30 w-sm"></textarea>
+    <div className="flex flex-col items-center gap-3">
+      <textarea value={interesses} onChange={e => setInteresses(e.target.value)} placeholder={textareaPlaceholder} className="resize min-h-30 min-w-sm"></textarea>
       <button onClick={() => recommendations.mutate(interesses)} className="bordered">Get Recommendations</button>
       <div>
         {recommendations.data && JSON.stringify(recommendations.data)}
       </div>
-    </>
+    </div>
   );
 }

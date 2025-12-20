@@ -1,5 +1,6 @@
 // CSS
 import './App.css';
+import "xp.css/dist/XP.css";
 
 // For Fetching & Queries
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
