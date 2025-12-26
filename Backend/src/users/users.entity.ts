@@ -1,19 +1,16 @@
 // Decorators
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, Column, PrimaryColumn } from "typeorm"
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn()
+  email: string;
 
   @Column()
   firstName: string;
 
   @Column()
   lastName: string;
-
-  @Column()
-  email: string;
 
   @Column()
   hashedPassword: string;
