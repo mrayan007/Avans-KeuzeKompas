@@ -8,14 +8,11 @@ const queryClient = new QueryClient();
 
 // Components
 import Layout from "./layout";
-import Window from "./components/window";
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Window />
-      </Layout>
+      <Layout />
     </QueryClientProvider>
   );
 }

@@ -39,7 +39,7 @@ export class AuthService {
     if (!user) throw new UnauthorizedException('No such user.');
     if (!await bcrypt.compare(userDto.password, user.hashedPassword)) throw new UnauthorizedException('Wrong password');
 
-    const payload = { sub: user.email };
+    const payload = { email: user.email };
     return {
       token: await this.jwtService.signAsync(payload)
     }

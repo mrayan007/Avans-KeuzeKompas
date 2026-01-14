@@ -6,6 +6,6 @@ import { StudentDto } from "../dto/student.dto"
 
 export const fetchRecommendations = async (interests: string) => {
   const studentDto = new StudentDto(interests);
-  const { data } = await backend.post('/recommend', studentDto);
+  const { data } = await backend.post('/recommendation', studentDto);
   return data;
 }

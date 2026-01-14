@@ -9,6 +9,9 @@ import { JwtModule } from "@nestjs/jwt";
 import { AuthService } from "./auth.service";
 import { ConfigService } from "@nestjs/config";
 
+// Guards
+import { AuthGuard } from "./auth.guard";
+
 // Controller
 import { AuthController } from "./auth.controller";
 
@@ -25,10 +28,15 @@ import { AuthController } from "./auth.controller";
     })
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   controllers: [
     AuthController
+  ],
+  exports: [
+    AuthGuard,
+    JwtModule
   ]
 })
 

@@ -4,10 +4,16 @@
 
 html,
 body {
+  margin: 0;
   overflow: hidden;
 }
 
 body {
   background-image: url('/app-bg.jpg');
   background-size: cover;
+}
+
+/* Fonts */
+@theme {
+  --font-pixel: "Pixelated MS Sans Serif", Arial;
 }
