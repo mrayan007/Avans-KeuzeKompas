@@ -6,31 +6,31 @@ export class Vkm {
   @PrimaryColumn()
   id: number;
 
-  @Column()
+  @Column('text')
   name: string;
 
-  @Column()
+  @Column('text')
   shortdescription: string;
 
-  @Column()
+  @Column('text')
   description: string;
 
-  @Column()
+  @Column('text')
   content: string;
 
   @Column()
   studycredit: number;
 
-  @Column()
+  @Column('text')
   location: string;
 
   @Column()
   contact_id: number;
 
-  @Column()
+  @Column('text')
   level: string;
 
-  @Column()
+  @Column('text')
   learningoutcomes: string;
 
   @Column()
@@ -45,7 +45,7 @@ export class Vkm {
   @Column()
   Geel: string;
 
-  @Column()
+  @Column('text')
   module_tags: string;
 
   @Column()

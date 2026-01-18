@@ -1,5 +1,5 @@
 // Decorators
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 
 // Repositories
@@ -17,5 +17,13 @@ export class VkmService {
 
   async findAll(): Promise<Vkm[]> {
     return await this.vkmRepository.find();
+  }
+
+  async findOne(id: number): Promise<Vkm> {
+    const vkm = await this.vkmRepository.findOneBy({ id: id })
+
+    if (!vkm) throw new NotFoundException();
+
+    return vkm;
   }
 }

@@ -26,6 +26,11 @@ export class VkmController {
     return await this.vkmService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Vkm> {
+    return await this.vkmService.findOne(Number(id));
+  }
+
   @UseGuards(AuthGuard)
   @Post('users')
   async addModule(@Request() req: any, @Body() moduleDto: ModuleDto): Promise<void> {
