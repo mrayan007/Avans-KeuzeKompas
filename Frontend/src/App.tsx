@@ -9,10 +9,19 @@ const queryClient = new QueryClient();
 // Components
 import Layout from "./layout";
 
+// Routing
+import { Route, Routes } from 'react-router';
+
+// Pages
+import Auth from './pages/auth';
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout />
+      <Routes>
+        <Route path='/' element={<Layout />} />
+        <Route path='/auth' element={<Auth />} />
+      </Routes>
     </QueryClientProvider>
   );
 }

@@ -7,18 +7,24 @@ import { useEffect, useRef, useState } from "react";
 // Types
 import type { Page } from "../types/page";
 
-const TitleBar = ({ title, closeWindow }: { title: string, closeWindow: () => void }) => {
+// Pages
+import Home from "../pages/home";
+import { Login } from "../pages/auth";
+
+const TitleBar = ({ title, closeWindow, page }: { title: string, closeWindow: () => void, page: Page }) => {
   return (
     <div className="title-bar handle active:cursor-grabbing">
       <div className="title-bar-text">{title}</div>
       <div className="title-bar-controls">
-        <button aria-label="Close" onClick={closeWindow}></button>
+        {page != Home && page != Login &&
+          <button aria-label="Close" onClick={closeWindow}></button>
+        }
       </div>
     </div>
   );
 }
 
-export default function Window({ page, onClose, openWindow }: { page: Page, onClose: () => void, openWindow: (page: Page) => void }) {
+export default function Window({ page, data, onClose, openWindow }: { page: Page, data: any, onClose: () => void, openWindow: (page: Page, data?: any) => void }) {
   const nodeRef = useRef(null);
   const [title, setTitle] = useState('');
 
@@ -32,21 +38,14 @@ export default function Window({ page, onClose, openWindow }: { page: Page, onCl
     setInitSize('w-fit');
   }, []);
 
-  const closeWindow = () => {
-    setInitSize('w-fit scale-0')
-    setTimeout(() => {
-      onClose();
-    }, 200);
-  };
-
   const Page = page;
 
   return (
     <Draggable nodeRef={nodeRef} handle=".handle">
       <div ref={nodeRef} className={`window ${initSize} ${initPos} ${minSize} ${extraOpts}`}>
-        <TitleBar title={title} closeWindow={closeWindow} />
-        <div className="window-body">
-          <Page title={setTitle} openWindow={openWindow} />
+        <TitleBar title={title} closeWindow={onClose} page={page} />
+        <div className="window-body max-h-150 overflow-auto">
+          <Page title={setTitle} openWindow={openWindow} data={data} />
         </div>
       </div>
     </Draggable>

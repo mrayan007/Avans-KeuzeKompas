@@ -1,11 +1,11 @@
 // Hooks
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // Data
-import { apps } from "./data/apps";
+// import { apps } from "./data/apps";
 
 // Models
-import { App } from "./models/app";
+// import { App } from "./models/app";
 
 // Types
 import type { Page } from "./types/page";
@@ -22,8 +22,8 @@ export default function Layout() {
     { id: Date.now(), page: Home }
   ]);
 
-  const openWindow = (page: Page): void => {
-    setWindows(prev => [...prev, { id: Date.now(), page: page }]);
+  const openWindow = (page: Page, data?: any): void => {
+    setWindows(prev => [...prev, { id: Date.now(), page: page, data: data }]);
   }
 
   const closeWindow = (id: number) => {
@@ -32,7 +32,7 @@ export default function Layout() {
 
   return (
     <div className="h-screen w-screen relative">
-      {windows.map(window => <Window page={window.page} key={window.id} onClose={() => closeWindow(window.id)} openWindow={openWindow} />)}
+      {windows.map(window => <Window page={window.page} key={window.id} data={window.data} onClose={() => closeWindow(window.id)} openWindow={openWindow} />)}
     </div>
   );
 }

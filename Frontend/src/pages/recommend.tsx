@@ -8,7 +8,7 @@ import type { Page } from "../types/page";
 // Pages
 import Cmd from "./cmd";
 
-export default function Recommend({ title, openWindow }: { title: (text: string) => void, openWindow: (page: Page) => void }) {
+export default function Recommend({ title, openWindow }: { title: (text: string) => void, openWindow: (page: Page, data?: any) => void }) {
   useEffect(() => {
     title('Keuze Module Recommender');
   });
@@ -18,8 +18,7 @@ export default function Recommend({ title, openWindow }: { title: (text: string)
   const [interesses, setInteresses] = useState('');
 
   useEffect(() => {
-    if (recommendations.data) openWindow(Cmd);
-    console.log(recommendations.data);
+    if (recommendations.data) openWindow(Cmd, recommendations.data);
   }, [recommendations.data]);
 
   return (
